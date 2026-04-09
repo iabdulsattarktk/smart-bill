@@ -8,7 +8,7 @@
 .sidebar {
   width: 240px;
   min-height: 100vh;
-  background: var(--navy);
+  background: #0d1b4b;
   display: flex;
   flex-direction: column;
   padding: 0;
@@ -29,17 +29,17 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 20px 18px;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding: 22px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
   min-height: 70px;
 }
 
 .logoIcon {
   background: var(--yellow);
   color: var(--navy);
-  width: 36px;
-  height: 36px;
-  border-radius: 8px;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -49,11 +49,42 @@
 
 .logoText {
   color: var(--white);
-  font-size: 18px;
-  font-weight: 800;
+  font-size: 20px;
+  font-weight: 700;
   white-space: nowrap;
 }
 .logoText span { color: var(--yellow); }
+
+/* ── DISCO INFO BOX ── */
+.discoBox {
+  margin: 14px 16px;
+  background: rgba(245,197,24,0.12);
+  border: 1px solid rgba(245,197,24,0.25);
+  border-radius: 10px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.discoDot {
+  width: 8px;
+  height: 8px;
+  background: var(--yellow);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.discoName {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--yellow);
+}
+
+.discoSub {
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+}
 
 /* ── COLLAPSE BUTTON ── */
 .collapseBtn {
@@ -79,40 +110,57 @@
 .sideNav {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  padding: 16px 10px;
+  gap: 2px;
+  padding: 10px 0;
   flex: 1;
+  overflow-y: auto;
+}
+
+/* Section label (e.g. MAIN, TOOLS) */
+.sectionLabel {
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  padding: 14px 20px 6px;
 }
 
 .navItem {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 11px 14px;
-  border-radius: 10px;
-  color: rgba(255,255,255,0.65);
+  padding: 11px 20px;
+  border-left: 3px solid transparent;
+  color: rgba(255,255,255,0.55);
   text-decoration: none;
   font-size: 14px;
   font-weight: 500;
   transition: all 0.2s;
   white-space: nowrap;
 }
-.navItem i { font-size: 15px; flex-shrink: 0; min-width: 18px; }
+.navItem i {
+  font-size: 15px;
+  flex-shrink: 0;
+  width: 18px;
+  text-align: center;
+}
 .navItem:hover {
-  background: rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.06);
   color: var(--white);
 }
 .navItem.active {
-  background: var(--yellow);
-  color: var(--navy);
-  font-weight: 700;
+  background: rgba(245,197,24,0.12);
+  color: var(--yellow);
+  border-left-color: var(--yellow);
+  font-weight: 600;
 }
-.navItem.active i { color: var(--navy); }
+.navItem.active i { color: var(--yellow); }
 
 /* ── BOTTOM ── */
 .sidebarBottom {
-  padding: 12px 10px 20px;
-  border-top: 1px solid rgba(255,255,255,0.08);
+  padding: 16px;
+  border-top: 1px solid rgba(255,255,255,0.07);
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -123,23 +171,21 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 10px 12px;
-  background: rgba(255,255,255,0.05);
-  border-radius: 10px;
+  padding: 0;
   overflow: hidden;
 }
 
 .userAvatar {
-  width: 32px;
-  height: 32px;
-  background: var(--yellow);
-  color: var(--navy);
+  width: 36px;
+  height: 36px;
+  background: #243580;
+  color: var(--yellow);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 13px;
-  font-weight: 800;
+  font-size: 14px;
+  font-weight: 700;
   flex-shrink: 0;
 }
 
@@ -209,7 +255,7 @@
   align-items: center;
   gap: 14px;
   padding: 14px 20px;
-  background: var(--navy);
+  background: #0d1b4b;
   position: sticky;
   top: 0;
   z-index: 100;

@@ -3,13 +3,16 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import styles from './Sidebar.module.css'
 
-const NAV_ITEMS = [
-  { path: '/dashboard',       icon: 'fa-house',          label: 'Dashboard' },
-  { path: '/bill-history',    icon: 'fa-clock-rotate-left', label: 'Bill History' },
-  { path: '/appliances',      icon: 'fa-plug',           label: 'Appliances' },
-  { path: '/slab-calculator', icon: 'fa-calculator',     label: 'Slab Calculator' },
-  { path: '/savings-goals',   icon: 'fa-piggy-bank',     label: 'Savings Goals' },
-  { path: '/settings',        icon: 'fa-gear',           label: 'Settings' },
+const MAIN_NAV = [
+  { path: '/dashboard',       icon: 'fa-house',              label: 'Dashboard' },
+  { path: '/bill-history',    icon: 'fa-clock-rotate-left',  label: 'Bill History' },
+  { path: '/appliances',      icon: 'fa-plug',               label: 'Appliances' },
+]
+
+const TOOLS_NAV = [
+  { path: '/slab-calculator', icon: 'fa-calculator',         label: 'Slab Calculator' },
+  { path: '/savings-goals',   icon: 'fa-piggy-bank',         label: 'Savings Goals' },
+  { path: '/settings',        icon: 'fa-gear',               label: 'Settings' },
 ]
 
 export default function Sidebar({ children }) {
@@ -24,10 +27,25 @@ export default function Sidebar({ children }) {
     navigate('/')
   }
 
-  // Show user's first name or email in sidebar
   const displayName = user?.user_metadata?.full_name?.split(' ')[0]
     || user?.email?.split('@')[0]
     || 'User'
+
+  const disco = user?.user_metadata?.disco || 'IESCO'
+  const city  = user?.user_metadata?.city  || ''
+
+  const renderNavItem = (item) => (
+    <Link
+      key={item.path}
+      to={item.path}
+      className={`${styles.navItem} ${location.pathname === item.path ? styles.active : ''}`}
+      onClick={() => setMobileOpen(false)}
+      title={collapsed ? item.label : ''}
+    >
+      <i className={`fa-solid ${item.icon}`}></i>
+      {!collapsed && <span>{item.label}</span>}
+    </Link>
+  )
 
   return (
     <div className={styles.layout}>
@@ -44,6 +62,17 @@ export default function Sidebar({ children }) {
           {!collapsed && <span className={styles.logoText}>Smart<span>Bill</span></span>}
         </div>
 
+        {/* DISCO info box */}
+        {!collapsed && (
+          <div className={styles.discoBox}>
+            <div className={styles.discoDot}></div>
+            <div>
+              <div className={styles.discoName}>{disco}</div>
+              {city && <div className={styles.discoSub}>{city}</div>}
+            </div>
+          </div>
+        )}
+
         {/* Collapse button (desktop) */}
         <button className={styles.collapseBtn} onClick={() => setCollapsed(!collapsed)}>
           <i className={`fa-solid ${collapsed ? 'fa-chevron-right' : 'fa-chevron-left'}`}></i>
@@ -51,18 +80,11 @@ export default function Sidebar({ children }) {
 
         {/* Nav items */}
         <nav className={styles.sideNav}>
-          {NAV_ITEMS.map(item => (
-            <Link
-              key={item.path}
-              to={item.path}
-              className={`${styles.navItem} ${location.pathname === item.path ? styles.active : ''}`}
-              onClick={() => setMobileOpen(false)}
-              title={collapsed ? item.label : ''}
-            >
-              <i className={`fa-solid ${item.icon}`}></i>
-              {!collapsed && <span>{item.label}</span>}
-            </Link>
-          ))}
+          {!collapsed && <div className={styles.sectionLabel}>Main</div>}
+          {MAIN_NAV.map(renderNavItem)}
+
+          {!collapsed && <div className={styles.sectionLabel}>Tools</div>}
+          {TOOLS_NAV.map(renderNavItem)}
         </nav>
 
         {/* Bottom: user info + logout */}
