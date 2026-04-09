@@ -5,10 +5,16 @@ import ProtectedRoute from './components/ProtectedRoute'
 import PublicRoute    from './components/PublicRoute'
 
 // Public pages (no login needed)
-import LandingPage    from './pages/LandingPage'
-import LoginPage      from './pages/LoginPage'
-import OnboardingPage from './pages/OnboardingPage'
-import NotFoundPage   from './pages/NotFoundPage'
+import LandingPage         from './pages/LandingPage'
+import LoginPage           from './pages/LoginPage'
+import OnboardingPage      from './pages/OnboardingPage'
+import HowItWorksPage      from './pages/HowItWorksPage'
+import AboutUsPage         from './pages/AboutUsPage'
+import ContactPage         from './pages/ContactPage'
+import FAQPage             from './pages/FAQPage'
+import PrivacyPolicyPage   from './pages/PrivacyPolicyPage'
+import TermsOfServicePage  from './pages/TermsOfServicePage'
+import NotFoundPage        from './pages/NotFoundPage'
 
 // App pages (login required)
 import DashboardPage      from './pages/DashboardPage'
@@ -24,6 +30,12 @@ function App() {
 
       {/* ── PUBLIC PAGES — no login needed ── */}
       <Route path="/" element={<LandingPage />} />
+      <Route path="/how-it-works" element={<HowItWorksPage />} />
+      <Route path="/about"        element={<AboutUsPage />} />
+      <Route path="/contact"      element={<ContactPage />} />
+      <Route path="/faq"          element={<FAQPage />} />
+      <Route path="/privacy"      element={<PrivacyPolicyPage />} />
+      <Route path="/terms"        element={<TermsOfServicePage />} />
 
       {/* Login & Signup — redirect to dashboard if already logged in */}
       <Route path="/login"  element={<PublicRoute><LoginPage /></PublicRoute>} />

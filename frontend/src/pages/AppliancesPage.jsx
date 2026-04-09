@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Sidebar from '../components/Sidebar'
+import { useLang } from '../context/LanguageContext'
 import styles from './AppliancesPage.module.css'
 
 const APPLIANCE_TYPES = [
@@ -7,16 +8,9 @@ const APPLIANCE_TYPES = [
   'Washing Machine', 'Iron', 'TV', 'LED Bulb', 'Tube Light', 'Microwave', 'Computer/Laptop', 'Other'
 ]
 
-const DEMO_APPLIANCES = [
-  { id: 1, name: 'AC (1.5 Ton)', type: 'Air Conditioner (AC)', tech: 'non-inverter', hours: 8,  capacity: '1.5 ton', age: 'old',  watts: 1800, costPerMonth: 2800, pct: 52 },
-  { id: 2, name: 'Fridge',       type: 'Refrigerator',          tech: 'non-inverter', hours: 24, capacity: '',         age: 'old',  watts: 150,  costPerMonth: 900,  pct: 17 },
-  { id: 3, name: 'Geyser',       type: 'Geyser (Water Heater)', tech: 'non-inverter', hours: 2,  capacity: '',         age: 'new',  watts: 2000, costPerMonth: 600,  pct: 11 },
-  { id: 4, name: 'Ceiling Fan',  type: 'Ceiling Fan',           tech: 'non-inverter', hours: 12, capacity: '',         age: 'old',  watts: 75,   costPerMonth: 140,  pct: 3  },
-  { id: 5, name: 'LED TV',       type: 'TV',                    tech: 'non-inverter', hours: 5,  capacity: '42 inch',  age: 'new',  watts: 80,   costPerMonth: 100,  pct: 2  },
-]
-
 export default function AppliancesPage() {
-  const [appliances] = useState(DEMO_APPLIANCES)
+  const { isUrdu } = useLang()
+  const [appliances, setAppliances] = useState([])
   const [showAdd, setShowAdd] = useState(false)
   const [form, setForm] = useState({
     name: '', type: 'Air Conditioner (AC)', tech: 'non-inverter', hours: '', capacity: '', age: 'old'
@@ -29,34 +23,36 @@ export default function AppliancesPage() {
       <div className={styles.page}>
         <div className={styles.header}>
           <div>
-            <h1><i className="fa-solid fa-plug"></i> My Appliances</h1>
-            <p>Track your appliances to get accurate AI bill predictions. Inverter vs non-inverter matters!</p>
+            <h1><i className="fa-solid fa-plug"></i> {isUrdu ? 'میرے آلات' : 'My Appliances'}</h1>
+            <p>{isUrdu ? 'اپنے آلات کو ٹریک کریں تاکہ AI بل کی درست پیشگوئی کر سکے۔ انورٹر بمقابلہ نان انورٹر اہم ہے!' : 'Track your appliances to get accurate AI bill predictions. Inverter vs non-inverter matters!'}</p>
           </div>
           <button className="btn-primary" onClick={() => setShowAdd(true)}>
-            <i className="fa-solid fa-plus"></i> Add Appliance
+            <i className="fa-solid fa-plus"></i> {isUrdu ? 'آلہ شامل کریں' : 'Add Appliance'}
           </button>
         </div>
 
         {/* Total cost card */}
         <div className={styles.totalCard}>
           <div className={styles.totalLeft}>
-            <div className={styles.totalLabel}>Total Estimated Monthly Cost</div>
+            <div className={styles.totalLabel}>{isUrdu ? 'کل تخمینی ماہانہ لاگت' : 'Total Estimated Monthly Cost'}</div>
             <div className={styles.totalAmount}>Rs. {totalCost.toLocaleString()}</div>
-            <div className={styles.totalSub}>from {appliances.length} appliances</div>
+            <div className={styles.totalSub}>{isUrdu ? `${appliances.length} آلات سے` : `from ${appliances.length} appliances`}</div>
           </div>
           <div className={styles.totalRight}>
             <i className="fa-solid fa-plug"></i>
           </div>
         </div>
 
-        {/* Tip box */}
-        <div className={styles.tipBox}>
-          <i className="fa-solid fa-lightbulb"></i>
-          <div>
-            <strong>Inverter vs Non-Inverter:</strong> Inverter appliances (especially AC) use 30–50% less electricity.
-            If your AC is non-inverter and old, upgrading it will dramatically reduce your bill.
+        {/* Tip box - only show when appliances exist */}
+        {appliances.length > 0 && (
+          <div className={styles.tipBox}>
+            <i className="fa-solid fa-lightbulb"></i>
+            <div>
+              <strong>Inverter vs Non-Inverter:</strong> Inverter appliances (especially AC) use 30-50% less electricity.
+              If your AC is non-inverter and old, upgrading it will dramatically reduce your bill.
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Appliance grid */}
         <div className={styles.appGrid}>
@@ -116,9 +112,24 @@ export default function AppliancesPage() {
           {/* Add appliance card */}
           <div className={styles.addCard} onClick={() => setShowAdd(true)}>
             <i className="fa-solid fa-plus"></i>
-            <span>Add Appliance</span>
+            <span>{isUrdu ? 'آلہ شامل کریں' : 'Add Appliance'}</span>
           </div>
         </div>
+
+        {/* Empty state message */}
+        {appliances.length === 0 && (
+          <div style={{textAlign:'center', padding:'48px 20px', color:'#888'}}>
+            <i className="fa-solid fa-plug" style={{fontSize:56, marginBottom:16, display:'block', opacity:0.25}}></i>
+            <p style={{fontSize:17, fontWeight:600, margin:'0 0 8px', color:'#555'}}>
+              {isUrdu ? 'ابھی تک کوئی آلہ شامل نہیں کیا گیا۔' : 'No appliances added yet.'}
+            </p>
+            <p style={{fontSize:14, margin:0, maxWidth:420, marginInline:'auto', lineHeight:1.6}}>
+              {isUrdu
+                ? 'درست AI بل کی پیشگوئی کے لیے اپنے گھر کے آلات شامل کریں۔ اپنے AC، فریج اور پنکھوں سے شروع کریں۔'
+                : 'Add your home appliances to get accurate AI bill predictions. Start with your AC, fridge, and fans.'}
+            </p>
+          </div>
+        )}
 
         {/* Add Modal */}
         {showAdd && (

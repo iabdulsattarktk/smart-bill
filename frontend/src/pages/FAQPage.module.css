@@ -1,0 +1,289 @@
+/* ══════════════════════════════════════
+   FAQ PAGE
+══════════════════════════════════════ */
+
+.page {
+  min-height: 100vh;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: var(--offwhite);
+  color: #1A1A1A;
+}
+
+.gold { color: var(--yellow); }
+
+/* ══ HERO ══ */
+.hero {
+  background: linear-gradient(135deg, var(--navy) 0%, #0d1a4a 100%);
+  padding: 80px 24px 60px;
+  text-align: center;
+  color: var(--white);
+}
+
+.heroInner {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.heroTitle {
+  font-size: 2.6rem;
+  font-weight: 800;
+  margin-bottom: 14px;
+}
+
+.heroSub {
+  font-size: 1.1rem;
+  opacity: 0.85;
+}
+
+/* ══ SEARCH ══ */
+.searchSection {
+  max-width: 600px;
+  margin: -26px auto 0;
+  padding: 0 24px;
+  position: relative;
+  z-index: 2;
+}
+
+.searchBox {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--white);
+  border-radius: 50px;
+  padding: 14px 24px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
+}
+
+.searchBox i {
+  color: var(--gray);
+  font-size: 1rem;
+}
+
+.searchBox input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  font-family: inherit;
+  background: transparent;
+  color: #1A1A1A;
+}
+
+.searchBox input::placeholder {
+  color: var(--gray);
+}
+
+/* ══ TABS ══ */
+.tabsSection {
+  max-width: 900px;
+  margin: 28px auto 0;
+  padding: 0 24px;
+}
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.tab {
+  padding: 9px 20px;
+  border-radius: 24px;
+  border: 1.5px solid var(--border);
+  background: var(--white);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--gray);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.tab:hover {
+  border-color: var(--navy);
+  color: var(--navy);
+}
+
+.tabActive {
+  background: var(--navy);
+  color: var(--white);
+  border-color: var(--navy);
+}
+
+.tabActive:hover { color: var(--white); }
+
+/* ══ FAQ SECTIONS ══ */
+.faqSection {
+  max-width: 800px;
+  margin: 36px auto 0;
+  padding: 0 24px 60px;
+}
+
+.faqBlock {
+  margin-bottom: 32px;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.sectionIcon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  color: var(--white);
+}
+
+.sectionIcon.navy { background: var(--navy); }
+.sectionIcon.gold { background: var(--yellow); color: var(--navy); }
+.sectionIcon.green { background: var(--green); }
+.sectionIcon.red { background: var(--red); }
+
+.sectionTitle {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--navy);
+}
+
+/* Accordion */
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.accItem {
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+}
+
+.accItem:hover {
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.09);
+}
+
+.accOpen {
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.09);
+}
+
+.accQuestion {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 16px 20px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--navy);
+  text-align: start;
+  font-family: inherit;
+}
+
+.chevron {
+  font-size: 0.78rem;
+  color: var(--gray);
+  transition: transform 0.25s;
+  flex-shrink: 0;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+.accAnswer {
+  padding: 0 20px 18px;
+}
+
+.accAnswer p {
+  font-size: 0.9rem;
+  color: var(--gray);
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ══ STILL NEED HELP ══ */
+.helpSection {
+  max-width: 900px;
+  margin: 0 auto 60px;
+  padding: 0 24px;
+  text-align: center;
+}
+
+.helpTitle {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--navy);
+  margin-bottom: 28px;
+}
+
+.helpGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.helpCard {
+  background: var(--white);
+  border-radius: 14px;
+  padding: 28px 20px;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.helpCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+}
+
+.helpIcon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  margin: 0 auto 14px;
+}
+
+.helpCard h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 6px;
+}
+
+.helpCard p {
+  font-size: 0.85rem;
+  color: var(--gray);
+  margin: 0;
+}
+
+/* ══ RESPONSIVE ══ */
+@media (max-width: 700px) {
+  .heroTitle { font-size: 1.8rem; }
+  .hero { padding: 60px 16px 40px; }
+  .helpGrid { grid-template-columns: 1fr; }
+  .tabs { gap: 6px; }
+  .tab { padding: 7px 14px; font-size: 0.82rem; }
+  .searchSection { margin-top: -20px; }
+  .faqSection { padding: 0 16px 40px; }
+  .helpSection { padding: 0 16px; }
+}

@@ -1,62 +1,38 @@
 import { useState } from 'react'
-import { Line } from 'react-chartjs-2'
-import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler } from 'chart.js'
 import Sidebar from '../components/Sidebar'
+import { useLang } from '../context/LanguageContext'
 import styles from './BillHistoryPage.module.css'
 
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler)
-
-const DEMO_BILLS = [
-  { id: 1, month: 'January 2025', units: 180, amount: 2640,  status: 'paid',   disco: 'IESCO', dueDate: '2025-02-10' },
-  { id: 2, month: 'February 2025',units: 160, amount: 2310,  status: 'paid',   disco: 'IESCO', dueDate: '2025-03-10' },
-  { id: 3, month: 'March 2025',   units: 210, amount: 3120,  status: 'paid',   disco: 'IESCO', dueDate: '2025-04-10' },
-  { id: 4, month: 'April 2025',   units: 280, amount: 4100,  status: 'paid',   disco: 'IESCO', dueDate: '2025-05-10' },
-  { id: 5, month: 'May 2025',     units: 350, amount: 4957,  status: 'unpaid', disco: 'IESCO', dueDate: '2025-06-10' },
-]
-
 export default function BillHistoryPage() {
-  const [bills] = useState(DEMO_BILLS)
+  const { isUrdu } = useLang()
+  const [bills, setBills] = useState([])
   const [showAdd, setShowAdd] = useState(false)
   const [form, setForm] = useState({ month: '', units: '', amount: '', disco: 'IESCO' })
 
-  const chartData = {
-    labels: bills.map(b => b.month.split(' ')[0]),
-    datasets: [{
-      label: 'Bill Amount (Rs.)',
-      data: bills.map(b => b.amount),
-      borderColor: '#1a2a6c',
-      backgroundColor: 'rgba(26,42,108,0.08)',
-      pointBackgroundColor: '#F5C518',
-      pointRadius: 6,
-      tension: 0.4,
-      fill: true,
-    }]
-  }
-
   const totalPaid = bills.filter(b => b.status === 'paid').reduce((s, b) => s + b.amount, 0)
-  const avgUnits  = Math.round(bills.reduce((s, b) => s + b.units, 0) / bills.length)
-  const avgAmount = Math.round(bills.reduce((s, b) => s + b.amount, 0) / bills.length)
+  const avgUnits  = bills.length > 0 ? Math.round(bills.reduce((s, b) => s + b.units, 0) / bills.length) : null
+  const avgAmount = bills.length > 0 ? Math.round(bills.reduce((s, b) => s + b.amount, 0) / bills.length) : null
 
   return (
     <Sidebar>
       <div className={styles.page}>
         <div className={styles.header}>
           <div>
-            <h1><i className="fa-solid fa-clock-rotate-left"></i> Bill History</h1>
-            <p>Track all your past electricity bills and spot trends.</p>
+            <h1><i className="fa-solid fa-clock-rotate-left"></i> {isUrdu ? 'بل کی تاریخ' : 'Bill History'}</h1>
+            <p>{isUrdu ? 'اپنے پچھلے بجلی کے بلوں کو ٹریک کریں اور رجحانات دیکھیں۔' : 'Track all your past electricity bills and spot trends.'}</p>
           </div>
           <button className="btn-primary" onClick={() => setShowAdd(true)}>
-            <i className="fa-solid fa-plus"></i> Add Bill
+            <i className="fa-solid fa-plus"></i> {isUrdu ? 'بل شامل کریں' : 'Add Bill'}
           </button>
         </div>
 
         {/* Summary cards */}
         <div className={styles.summaryCards}>
           {[
-            { label: 'Total Bills Recorded', value: bills.length, icon: 'fa-file-invoice', color: '#1a2a6c', bg: '#E8EAF6' },
-            { label: 'Total Paid',            value: `Rs. ${totalPaid.toLocaleString()}`, icon: 'fa-check-circle', color: '#2E7D32', bg: '#E8F5E9' },
-            { label: 'Avg Monthly Units',     value: `${avgUnits} kWh`, icon: 'fa-bolt', color: '#b8860b', bg: '#FFFDE7' },
-            { label: 'Avg Monthly Bill',      value: `Rs. ${avgAmount.toLocaleString()}`, icon: 'fa-chart-line', color: '#6A1B9A', bg: '#F3E5F5' },
+            { label: isUrdu ? 'کل بل ریکارڈ' : 'Total Bills Recorded', value: bills.length, icon: 'fa-file-invoice', color: '#1a2a6c', bg: '#E8EAF6' },
+            { label: isUrdu ? 'کل ادا شدہ' : 'Total Paid', value: `Rs. ${totalPaid.toLocaleString()}`, icon: 'fa-check-circle', color: '#2E7D32', bg: '#E8F5E9' },
+            { label: isUrdu ? 'اوسط ماہانہ یونٹس' : 'Avg Monthly Units', value: avgUnits !== null ? `${avgUnits} kWh` : '--', icon: 'fa-bolt', color: '#b8860b', bg: '#FFFDE7' },
+            { label: isUrdu ? 'اوسط ماہانہ بل' : 'Avg Monthly Bill', value: avgAmount !== null ? `Rs. ${avgAmount.toLocaleString()}` : '--', icon: 'fa-chart-line', color: '#6A1B9A', bg: '#F3E5F5' },
           ].map(s => (
             <div key={s.label} className={`${styles.sumCard} card`}>
               <div className={styles.sumIcon} style={{background: s.bg, color: s.color}}>
@@ -68,35 +44,56 @@ export default function BillHistoryPage() {
           ))}
         </div>
 
-        {/* Chart */}
+        {/* Chart section */}
         <div className={`${styles.chartCard} card`}>
-          <h2 className={styles.cardTitle}><i className="fa-solid fa-chart-line"></i> Bill Trend</h2>
-          <Line data={chartData} options={{ responsive: true, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: false } } }} />
+          <h2 className={styles.cardTitle}><i className="fa-solid fa-chart-line"></i> {isUrdu ? 'بل کا رجحان' : 'Bill Trend'}</h2>
+          <div style={{textAlign:'center', padding:'40px 20px', color:'#888'}}>
+            <i className="fa-solid fa-chart-line" style={{fontSize:48, marginBottom:16, display:'block', opacity:0.3}}></i>
+            <p style={{fontSize:16, margin:0}}>
+              {isUrdu
+                ? 'ابھی تک کوئی بل ڈیٹا نہیں۔ رجحانات دیکھنے کے لیے اپنا پہلا بل شامل کریں۔'
+                : 'No bill data yet. Add your first bill to see trends.'}
+            </p>
+          </div>
         </div>
 
         {/* Bill list */}
         <div className="card">
-          <h2 className={styles.cardTitle}><i className="fa-solid fa-list"></i> All Bills</h2>
-          <div className={styles.billList}>
-            {bills.map(bill => (
-              <div key={bill.id} className={styles.billRow}>
-                <div className={styles.billMonth}>
-                  <div className={styles.billMonthIcon}><i className="fa-solid fa-calendar"></i></div>
-                  <div>
-                    <div className={styles.billMonthName}>{bill.month}</div>
-                    <div className={styles.billDisco}>{bill.disco}</div>
+          <h2 className={styles.cardTitle}><i className="fa-solid fa-list"></i> {isUrdu ? 'تمام بل' : 'All Bills'}</h2>
+          {bills.length > 0 ? (
+            <div className={styles.billList}>
+              {bills.map(bill => (
+                <div key={bill.id} className={styles.billRow}>
+                  <div className={styles.billMonth}>
+                    <div className={styles.billMonthIcon}><i className="fa-solid fa-calendar"></i></div>
+                    <div>
+                      <div className={styles.billMonthName}>{bill.month}</div>
+                      <div className={styles.billDisco}>{bill.disco}</div>
+                    </div>
                   </div>
+                  <div className={styles.billUnits}><span>{bill.units}</span><small>units</small></div>
+                  <div className={styles.billAmount}>Rs. {bill.amount.toLocaleString()}</div>
+                  <div className={styles.billDue}>Due: {bill.dueDate}</div>
+                  <span className={`badge ${bill.status === 'paid' ? 'badge-green' : 'badge-red'}`}>
+                    <i className={`fa-solid ${bill.status === 'paid' ? 'fa-check' : 'fa-clock'}`}></i>
+                    {bill.status === 'paid' ? 'Paid' : 'Unpaid'}
+                  </span>
                 </div>
-                <div className={styles.billUnits}><span>{bill.units}</span><small>units</small></div>
-                <div className={styles.billAmount}>Rs. {bill.amount.toLocaleString()}</div>
-                <div className={styles.billDue}>Due: {bill.dueDate}</div>
-                <span className={`badge ${bill.status === 'paid' ? 'badge-green' : 'badge-red'}`}>
-                  <i className={`fa-solid ${bill.status === 'paid' ? 'fa-check' : 'fa-clock'}`}></i>
-                  {bill.status === 'paid' ? 'Paid' : 'Unpaid'}
-                </span>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          ) : (
+            <div style={{textAlign:'center', padding:'48px 20px', color:'#888'}}>
+              <i className="fa-solid fa-file-invoice" style={{fontSize:56, marginBottom:16, display:'block', opacity:0.25}}></i>
+              <p style={{fontSize:17, fontWeight:600, margin:'0 0 8px', color:'#555'}}>
+                {isUrdu ? 'آپ نے ابھی تک کوئی بل ریکارڈ نہیں کیا۔' : "You haven't recorded any bills yet."}
+              </p>
+              <p style={{fontSize:14, margin:0, maxWidth:400, marginInline:'auto', lineHeight:1.6}}>
+                {isUrdu
+                  ? 'اپنا تازہ ترین بجلی کا بل شامل کر کے شروع کریں۔ جتنے زیادہ بل آپ شامل کریں گے، AI کی پیشگوئیاں اتنی بہتر ہوں گی۔'
+                  : 'Start by adding your most recent electricity bill. The more bills you add, the better AI predictions become.'}
+              </p>
+            </div>
+          )}
         </div>
 
         {/* Add Bill Modal */}
