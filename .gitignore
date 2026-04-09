@@ -1,0 +1,23 @@
+# Vercel
+.vercel
+
+# Python cache (never commit these)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environment variables (secret keys - NEVER commit)
+.env
+.env.local
+frontend/.env.local
+
+# Memory backup (local only, not for GitHub)
+memory-backup/
+
+# Node
+node_modules/
+frontend/node_modules/
+
+# Build output
+frontend/dist/
