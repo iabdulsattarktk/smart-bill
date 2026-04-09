@@ -3,10 +3,5 @@
   "outputDirectory": "frontend/dist",
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/$1" }
-  ],
-  "functions": {
-    "api/*.py": {
-      "runtime": "python3.12"
-    }
-  }
+  ]
 }
