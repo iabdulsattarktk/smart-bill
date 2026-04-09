@@ -94,6 +94,14 @@
 }
 .btnLogin:hover { border-color: var(--white); }
 
+/* Urdu button — bigger font for Nastaliq readability */
+.urduBtn {
+  font-family: 'Noto Nastaliq Urdu', serif !important;
+  font-size: 14px !important;
+  line-height: 1.8 !important;
+  padding: 4px 14px !important;
+}
+
 .btnSignup {
   background: var(--yellow);
   color: var(--navy);

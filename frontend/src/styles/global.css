@@ -2,6 +2,14 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
+/* Urdu font utility class — use on any Urdu text */
+.urdu {
+  font-family: 'Noto Nastaliq Urdu', 'Segoe UI', Arial, sans-serif !important;
+  direction: rtl;
+  unicode-bidi: embed;
+  line-height: 2 !important;
+}
+
 :root {
   --navy:      #1a2a6c;
   --navy-dark: #0d1b4b;

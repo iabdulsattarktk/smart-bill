@@ -135,10 +135,16 @@ export default function LoginPage() {
 
       {/* Right panel — Form */}
       <div className={styles.rightPanel}>
-        {/* Back to home */}
-        <Link to="/" className={styles.backLink}>
-          <i className="fa-solid fa-arrow-left"></i> Back to home
-        </Link>
+        {/* Top bar with back button */}
+        <div className={styles.topBar}>
+          <Link to="/" className={styles.backBtn}>
+            <i className="fa-solid fa-arrow-left"></i> Back to home
+          </Link>
+          <div className={styles.topBarLogo}>
+            <div className={styles.topBarLogoIcon}><i className="fa-solid fa-bolt"></i></div>
+            <span>Smart<span>Bill</span></span>
+          </div>
+        </div>
 
         <div className={styles.formCard}>
           {/* Tab switcher */}

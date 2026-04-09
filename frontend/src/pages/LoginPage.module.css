@@ -162,9 +162,58 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 40px 30px;
+  justify-content: flex-start;
+  padding: 0 30px 40px;
   overflow-y: auto;
+}
+
+/* Top bar — back button + logo (mobile) */
+.topBar {
+  width: 100%;
+  max-width: 440px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0 16px;
+  margin-bottom: 8px;
+}
+
+.backBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--navy);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+.backBtn:hover {
+  background: var(--light-blue);
+  border-color: var(--navy);
+}
+
+/* Logo shown on mobile (when left panel is hidden) */
+.topBarLogo {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--navy);
+}
+.topBarLogo span { color: var(--yellow); }
+.topBarLogoIcon {
+  background: var(--navy);
+  color: var(--yellow);
+  width: 34px; height: 34px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
 }
 
 .backLink {
@@ -321,5 +370,7 @@
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
   .leftPanel { display: none; }
-  .rightPanel { width: 100%; padding: 30px 20px; }
+  .rightPanel { width: 100%; padding: 0 20px 40px; }
+  .topBarLogo { display: flex; }
+  .topBar { padding: 16px 0; }
 }
