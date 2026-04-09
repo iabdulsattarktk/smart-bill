@@ -1,0 +1,90 @@
+.page {
+  min-height: 100vh;
+  background: var(--offwhite);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 20px;
+}
+
+.logo {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 22px; font-weight: 800; color: var(--navy);
+  margin-bottom: 32px;
+}
+.logo span { color: var(--yellow); }
+.logoIcon {
+  background: var(--navy); color: var(--yellow);
+  width: 40px; height: 40px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* Progress */
+.progress { display: flex; gap: 0; margin-bottom: 32px; align-items: center; }
+.progressStep { display: flex; flex-direction: column; align-items: center; gap: 6px; position: relative; }
+.progressStep:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 16px;
+  left: calc(50% + 16px);
+  width: 60px;
+  height: 2px;
+  background: var(--border);
+}
+.progressStep:not(:last-child).done::after { background: var(--navy); }
+.dot {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--border); color: var(--gray);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700;
+  transition: all 0.3s;
+}
+.dotActive { background: var(--navy); color: var(--white); }
+.stepLabel { font-size: 11px; color: var(--gray); white-space: nowrap; }
+.stepLabelActive { color: var(--navy); font-weight: 700; }
+
+/* Card */
+.card {
+  background: var(--white);
+  border-radius: 18px;
+  padding: 36px;
+  width: 100%;
+  max-width: 520px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border);
+}
+
+.stepContent { display: flex; flex-direction: column; margin-bottom: 24px; }
+.stepContent h1 { font-size: 24px; font-weight: 800; color: var(--navy); margin-bottom: 10px; }
+.stepContent p { font-size: 14px; color: var(--gray); line-height: 1.7; margin-bottom: 16px; }
+
+.stepUrdu { font-size: 18px; color: var(--navy); direction: rtl; margin-bottom: 12px; }
+
+.stepIcon {
+  width: 60px; height: 60px; background: var(--light-blue); color: var(--navy);
+  border-radius: 16px; display: flex; align-items: center; justify-content: center;
+  font-size: 26px; margin-bottom: 20px;
+}
+
+/* Welcome features */
+.welcomeFeatures { display: flex; flex-direction: column; gap: 12px; margin-top: 8px; }
+.wFeat { display: flex; align-items: center; gap: 12px; }
+.wFeatIcon { width: 36px; height: 36px; background: var(--light-blue); color: var(--navy); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
+.wFeat span { font-size: 13.5px; color: var(--text); }
+
+.skipNote {
+  background: rgba(26,42,108,0.06);
+  color: var(--navy);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 13px;
+  display: flex; gap: 8px; align-items: center;
+}
+.skipNote i { flex-shrink: 0; }
+
+.setupSummary { background: var(--offwhite); border-radius: 10px; padding: 16px; display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+.summRow { font-size: 14px; color: var(--gray); display: flex; align-items: center; gap: 8px; }
+.summRow i { color: var(--navy); }
+.summRow strong { color: var(--navy); }
+
+.btnRow { display: flex; gap: 12px; }

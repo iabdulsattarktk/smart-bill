@@ -1,0 +1,26 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 20px;
+  background: var(--offwhite);
+}
+.logoIcon {
+  width: 70px; height: 70px;
+  background: var(--navy); color: var(--yellow);
+  border-radius: 20px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 32px;
+  margin-bottom: 24px;
+}
+.code {
+  font-size: 100px; font-weight: 900; color: var(--navy);
+  line-height: 1; letter-spacing: -4px; margin-bottom: 14px;
+  opacity: 0.15;
+}
+h1 { font-size: 28px; font-weight: 800; color: var(--navy); margin-bottom: 10px; }
+p  { font-size: 16px; color: var(--gray); margin-bottom: 32px; }
+.buttons { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }

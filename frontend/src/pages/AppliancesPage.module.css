@@ -1,0 +1,103 @@
+.page { padding: 28px 32px; max-width: 1200px; display: flex; flex-direction: column; gap: 24px; }
+
+.header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 14px; }
+.header h1 { font-size: 24px; font-weight: 800; color: var(--navy); display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+.header p  { font-size: 14px; color: var(--gray); }
+
+.totalCard {
+  background: linear-gradient(135deg, var(--navy-dark), var(--navy));
+  border-radius: var(--radius);
+  padding: 24px 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.totalLabel  { font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 6px; }
+.totalAmount { font-size: 38px; font-weight: 900; color: var(--white); letter-spacing: -1px; }
+.totalSub    { font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 4px; }
+.totalRight  { font-size: 48px; color: rgba(245,197,24,0.3); }
+
+.tipBox {
+  background: rgba(245,197,24,0.1);
+  border: 1px solid rgba(245,197,24,0.3);
+  border-radius: var(--radius-sm);
+  padding: 14px 18px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  font-size: 13.5px;
+  color: var(--text);
+  line-height: 1.6;
+}
+.tipBox i { color: var(--yellow-dark); font-size: 16px; margin-top: 2px; flex-shrink: 0; }
+
+.appGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.appCard { display: flex; flex-direction: column; gap: 14px; }
+
+.appCardTop { display: flex; gap: 12px; align-items: flex-start; }
+.appIcon { width: 44px; height: 44px; background: var(--light-blue); color: var(--navy); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+.appName { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 2px; }
+.appType { font-size: 12px; color: var(--gray); }
+
+.appDetails { display: flex; flex-direction: column; gap: 6px; }
+.detailRow { display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--gray); }
+.detailRow span:last-child { font-weight: 600; color: var(--text); }
+
+.costRow { display: flex; justify-content: space-between; align-items: center; }
+.costLabel  { font-size: 11px; color: var(--gray); text-transform: uppercase; letter-spacing: 0.5px; }
+.costAmount { font-size: 20px; font-weight: 800; color: var(--navy); }
+.pctBadge   { background: var(--light-blue); color: var(--navy); padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 700; }
+
+.appBar { height: 5px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.appBarFill { height: 100%; background: var(--navy); border-radius: 3px; }
+
+.appActions { display: flex; gap: 8px; }
+.editBtn {
+  flex: 1;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 8px; border-radius: 8px;
+  background: var(--offwhite); border: 1px solid var(--border);
+  font-size: 13px; font-weight: 600; color: var(--navy); cursor: pointer; font-family: inherit;
+}
+.editBtn:hover { background: var(--light-blue); }
+.deleteBtn {
+  padding: 8px 12px; border-radius: 8px;
+  background: rgba(229,57,53,0.08); border: 1px solid rgba(229,57,53,0.15);
+  color: var(--red); cursor: pointer; font-size: 13px; font-family: inherit;
+}
+.deleteBtn:hover { background: rgba(229,57,53,0.15); }
+
+.addCard {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+  border: 2px dashed var(--border); border-radius: var(--radius);
+  padding: 40px; cursor: pointer; color: var(--gray); transition: all 0.2s;
+  font-size: 14px; font-weight: 600;
+}
+.addCard i { font-size: 28px; color: var(--navy); }
+.addCard:hover { border-color: var(--navy); color: var(--navy); background: var(--light-blue); }
+
+.techNote {
+  background: rgba(26,42,108,0.06);
+  color: var(--navy);
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 13px;
+  line-height: 1.6;
+  display: flex; gap: 8px; align-items: flex-start;
+}
+.techNote i { flex-shrink: 0; margin-top: 1px; }
+
+/* Modal */
+.modalOverlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 500; padding: 20px; overflow-y: auto; }
+.modal { background: var(--white); border-radius: 18px; padding: 28px; width: 100%; max-width: 480px; box-shadow: 0 20px 60px rgba(0,0,0,0.2); }
+.modalHeader { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+.modalHeader h2 { font-size: 20px; font-weight: 700; color: var(--navy); }
+.modalHeader button { background: transparent; border: none; font-size: 18px; color: var(--gray); cursor: pointer; }
+
+@media (max-width: 1000px) { .appGrid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 700px)  { .appGrid { grid-template-columns: 1fr; } .page { padding: 16px; } }

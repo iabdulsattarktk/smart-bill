@@ -1,0 +1,385 @@
+.page {
+  padding: 28px 32px;
+  max-width: 1300px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ── HEADER ── */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.greeting {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+
+.subGreeting {
+  font-size: 14px;
+  color: var(--gray);
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.peakAlert {
+  background: rgba(229,57,53,0.1);
+  color: var(--red);
+  border: 1px solid rgba(229,57,53,0.25);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.75; }
+}
+
+/* ── TOP CARDS ── */
+.topCards {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 20px;
+}
+
+/* Predict card */
+.predictCard {
+  background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 100%);
+  border-radius: var(--radius);
+  padding: 28px;
+  color: var(--white);
+  box-shadow: var(--shadow-md);
+}
+
+.predictTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  gap: 10px;
+}
+
+.predictLabel {
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.7);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.predictDisco {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--yellow);
+}
+
+.predictAmount {
+  font-size: 52px;
+  font-weight: 900;
+  letter-spacing: -2px;
+  line-height: 1;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+
+.predictUnits {
+  font-size: 14px;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 20px;
+}
+
+.predictBreakdown {
+  background: rgba(255,255,255,0.07);
+  border-radius: 10px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.predictRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: rgba(255,255,255,0.7);
+}
+.predictRow i { margin-right: 6px; }
+.predictRow span:last-child { font-weight: 700; color: var(--white); }
+
+.predictCompare {
+  font-size: 13px;
+  color: rgba(255,255,255,0.55);
+}
+
+/* Mini cards */
+.miniCards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.miniCard {
+  flex: 1;
+}
+
+.miniIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  margin-bottom: 10px;
+}
+
+.miniLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gray);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  margin-bottom: 4px;
+}
+
+.miniValue {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+
+.miniSub {
+  font-size: 12px;
+  color: var(--gray);
+}
+
+.progressBar {
+  height: 6px;
+  background: var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+  margin: 6px 0;
+}
+
+.progressFill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.5s ease;
+}
+
+/* ── MID ROW ── */
+.midRow {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 20px;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.cardHeader h2 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--navy);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.cardHeader h2 i { font-size: 14px; }
+
+.viewAll {
+  background: transparent;
+  border: none;
+  color: var(--navy);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: inherit;
+}
+.viewAll:hover { color: var(--yellow-dark); }
+
+.chartCard { flex: 1; }
+.appCard   { flex: 1; }
+
+/* Appliance list */
+.appList {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.appRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.appIcon {
+  width: 36px;
+  height: 36px;
+  background: var(--light-blue);
+  color: var(--navy);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.appInfo { flex: 1; }
+.appName {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 5px;
+}
+.appBar {
+  height: 5px;
+  background: var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.appBarFill {
+  height: 100%;
+  background: var(--navy);
+  border-radius: 3px;
+}
+
+.appCost { text-align: right; }
+.appAmt {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--navy);
+}
+.appPct {
+  font-size: 11px;
+  color: var(--gray);
+}
+
+/* ── TIPS ── */
+.tipsSection { }
+
+.tipsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.tipCard {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 14px;
+  background: var(--offwhite);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+
+.tipIcon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+
+.tipCard p {
+  font-size: 13px;
+  color: var(--gray);
+  line-height: 1.6;
+}
+
+/* ── QUICK ACTIONS ── */
+.quickActions {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.quickBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 12px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  box-shadow: var(--shadow);
+}
+.quickBtn:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--navy);
+}
+
+.quickIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+/* ── SKELETONS ── */
+.skH      { height: 40px; width: 260px; }
+.skPredTitle { height: 20px; width: 180px; margin-bottom: 12px; }
+.skPredAmt   { height: 50px; width: 220px; }
+.skMini      { height: 100px; }
+.skChart     { height: 200px; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1100px) {
+  .topCards { grid-template-columns: 1fr; }
+  .miniCards { flex-direction: row; }
+  .midRow { grid-template-columns: 1fr; }
+  .tipsGrid { grid-template-columns: 1fr; }
+  .quickActions { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .page { padding: 16px; }
+  .predictAmount { font-size: 38px; }
+  .miniCards { flex-direction: column; }
+  .quickActions { grid-template-columns: repeat(2, 1fr); }
+  .header { flex-direction: column; }
+}

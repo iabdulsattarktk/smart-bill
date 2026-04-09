@@ -1,0 +1,62 @@
+.page { padding: 28px 32px; max-width: 1100px; display: flex; flex-direction: column; gap: 24px; }
+.header { margin-bottom: 4px; }
+.header h1 { font-size: 24px; font-weight: 800; color: var(--navy); display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+.header p  { font-size: 14px; color: var(--gray); }
+
+.layout { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+.leftCol, .rightCol { display: flex; flex-direction: column; gap: 20px; }
+
+.cardTitle { font-size: 15px; font-weight: 700; color: var(--navy); display: flex; align-items: center; gap: 8px; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+
+.avatarSection { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
+.avatar { width: 52px; height: 52px; background: var(--navy); color: var(--yellow); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 800; flex-shrink: 0; }
+.avatarName  { font-size: 16px; font-weight: 700; color: var(--navy); }
+.avatarEmail { font-size: 13px; color: var(--gray); }
+
+/* Notifications */
+.notifList { display: flex; flex-direction: column; gap: 14px; }
+.notifRow { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+.notifRow:last-child { border-bottom: none; }
+.notifLabel { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+.notifSub   { font-size: 12px; color: var(--gray); }
+
+.toggle {
+  width: 44px; height: 24px; border-radius: 12px; background: var(--border);
+  cursor: pointer; position: relative; transition: background 0.2s; flex-shrink: 0;
+}
+.toggleOn { background: var(--navy); }
+.toggleThumb {
+  position: absolute; top: 3px; left: 3px;
+  width: 18px; height: 18px; border-radius: 50%; background: var(--white);
+  transition: left 0.2s; box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+.toggleOn .toggleThumb { left: 23px; }
+
+/* Language */
+.langOptions { display: flex; flex-direction: column; gap: 8px; }
+.langOption {
+  display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 10px;
+  border: 1.5px solid var(--border); cursor: pointer; transition: all 0.2s;
+}
+.langOption:hover { border-color: var(--navy); background: var(--offwhite); }
+.langActive { border-color: var(--navy); background: var(--light-blue); }
+.langLabel { font-size: 14px; font-weight: 700; color: var(--navy); flex: 1; }
+.langSub   { font-size: 12px; color: var(--gray); }
+
+/* Danger */
+.dangerCard { border-color: rgba(229,57,53,0.25) !important; }
+.dangerBtn {
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(229,57,53,0.08); color: var(--red);
+  border: 1.5px solid rgba(229,57,53,0.25); border-radius: 8px;
+  padding: 10px 18px; font-size: 14px; font-weight: 600;
+  cursor: pointer; font-family: inherit; margin-bottom: 10px;
+}
+.dangerBtn:hover { background: rgba(229,57,53,0.15); }
+.dangerNote { font-size: 12px; color: var(--gray); line-height: 1.5; }
+
+/* Save bar */
+.saveBar { display: flex; align-items: center; justify-content: flex-end; gap: 14px; padding: 16px 0; border-top: 1px solid var(--border); }
+.savedMsg { color: var(--green); font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 7px; }
+
+@media (max-width: 900px) { .layout { grid-template-columns: 1fr; } .page { padding: 16px; } }
