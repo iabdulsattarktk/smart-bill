@@ -199,6 +199,7 @@
   margin-bottom: 10px;
   position: relative;
   z-index: 1;
+  color: #FFFFFF;      /* explicit — never inherit faded color */
 }
 .heroTitle span { color: var(--yellow); }
 
@@ -213,7 +214,7 @@
 
 .heroDesc {
   font-size: 18px;
-  color: rgba(255,255,255,0.8);
+  color: rgba(255,255,255,0.85);
   max-width: 560px;
   margin: 0 auto 36px;
   line-height: 1.7;
