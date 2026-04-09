@@ -4,7 +4,7 @@
   background: var(--offwhite);
 }
 
-/* ── SIDEBAR ── */
+/* ── SIDEBAR — always 240px on desktop ── */
 .sidebar {
   width: 240px;
   min-height: 100vh;
@@ -12,16 +12,10 @@
   display: flex;
   flex-direction: column;
   padding: 0;
-  transition: width 0.25s ease;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 200;
-  overflow: hidden;
-}
-
-.sidebar.collapsed {
-  width: 68px;
 }
 
 /* ── LOGO ── */
@@ -86,26 +80,6 @@
   color: rgba(255,255,255,0.4);
 }
 
-/* ── COLLAPSE BUTTON ── */
-.collapseBtn {
-  position: absolute;
-  top: 22px;
-  right: -12px;
-  width: 24px;
-  height: 24px;
-  background: var(--yellow);
-  color: var(--navy);
-  border: none;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 10px;
-  cursor: pointer;
-  z-index: 10;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-}
-
 /* ── NAV ── */
 .sideNav {
   display: flex;
@@ -116,7 +90,6 @@
   overflow-y: auto;
 }
 
-/* Section label (e.g. MAIN, TOOLS) */
 .sectionLabel {
   font-size: 10px;
   font-weight: 700;
@@ -166,12 +139,10 @@
   gap: 8px;
 }
 
-/* User info row */
 .userRow {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 0;
   overflow: hidden;
 }
 
@@ -234,14 +205,9 @@
 .main {
   margin-left: 240px;
   flex: 1;
-  transition: margin-left 0.25s ease;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-}
-
-.layout:has(.sidebar.collapsed) .main {
-  margin-left: 68px;
 }
 
 .content {
@@ -288,20 +254,18 @@
 @media (max-width: 768px) {
   .sidebar {
     left: -240px;
-    width: 240px !important;
+    width: 240px;
     box-shadow: 4px 0 20px rgba(0,0,0,0.3);
+    transition: left 0.25s ease;
   }
   .sidebar.mobileOpen {
     left: 0;
   }
   .main {
-    margin-left: 0 !important;
+    margin-left: 0;
   }
   .mobileTopbar {
     display: flex;
-  }
-  .collapseBtn {
-    display: none;
   }
   .overlay {
     display: block;

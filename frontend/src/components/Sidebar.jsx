@@ -19,7 +19,6 @@ export default function Sidebar({ children }) {
   const location  = useLocation()
   const navigate  = useNavigate()
   const { user, logout } = useAuth()
-  const [collapsed, setCollapsed] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
 
   const handleLogout = async () => {
@@ -40,10 +39,9 @@ export default function Sidebar({ children }) {
       to={item.path}
       className={`${styles.navItem} ${location.pathname === item.path ? styles.active : ''}`}
       onClick={() => setMobileOpen(false)}
-      title={collapsed ? item.label : ''}
     >
       <i className={`fa-solid ${item.icon}`}></i>
-      {!collapsed && <span>{item.label}</span>}
+      <span>{item.label}</span>
     </Link>
   )
 
@@ -54,55 +52,46 @@ export default function Sidebar({ children }) {
         <div className={styles.overlay} onClick={() => setMobileOpen(false)} />
       )}
 
-      {/* Sidebar */}
-      <aside className={`${styles.sidebar} ${collapsed ? styles.collapsed : ''} ${mobileOpen ? styles.mobileOpen : ''}`}>
+      {/* Sidebar — always expanded on desktop */}
+      <aside className={`${styles.sidebar} ${mobileOpen ? styles.mobileOpen : ''}`}>
         {/* Logo */}
         <div className={styles.sidebarLogo}>
           <div className={styles.logoIcon}><i className="fa-solid fa-bolt"></i></div>
-          {!collapsed && <span className={styles.logoText}>Smart<span>Bill</span></span>}
+          <span className={styles.logoText}>Smart<span>Bill</span></span>
         </div>
 
         {/* DISCO info box */}
-        {!collapsed && (
-          <div className={styles.discoBox}>
-            <div className={styles.discoDot}></div>
-            <div>
-              <div className={styles.discoName}>{disco}</div>
-              {city && <div className={styles.discoSub}>{city}</div>}
-            </div>
+        <div className={styles.discoBox}>
+          <div className={styles.discoDot}></div>
+          <div>
+            <div className={styles.discoName}>{disco}</div>
+            {city && <div className={styles.discoSub}>{city}</div>}
           </div>
-        )}
-
-        {/* Collapse button (desktop) */}
-        <button className={styles.collapseBtn} onClick={() => setCollapsed(!collapsed)}>
-          <i className={`fa-solid ${collapsed ? 'fa-chevron-right' : 'fa-chevron-left'}`}></i>
-        </button>
+        </div>
 
         {/* Nav items */}
         <nav className={styles.sideNav}>
-          {!collapsed && <div className={styles.sectionLabel}>Main</div>}
+          <div className={styles.sectionLabel}>Main</div>
           {MAIN_NAV.map(renderNavItem)}
 
-          {!collapsed && <div className={styles.sectionLabel}>Tools</div>}
+          <div className={styles.sectionLabel}>Tools</div>
           {TOOLS_NAV.map(renderNavItem)}
         </nav>
 
         {/* Bottom: user info + logout */}
         <div className={styles.sidebarBottom}>
-          {!collapsed && (
-            <div className={styles.userRow}>
-              <div className={styles.userAvatar}>
-                {displayName.charAt(0).toUpperCase()}
-              </div>
-              <div className={styles.userInfo}>
-                <div className={styles.userName}>{displayName}</div>
-                <div className={styles.userEmail}>{user?.email}</div>
-              </div>
+          <div className={styles.userRow}>
+            <div className={styles.userAvatar}>
+              {displayName.charAt(0).toUpperCase()}
             </div>
-          )}
+            <div className={styles.userInfo}>
+              <div className={styles.userName}>{displayName}</div>
+              <div className={styles.userEmail}>{user?.email}</div>
+            </div>
+          </div>
           <button className={styles.logoutBtn} onClick={handleLogout}>
             <i className="fa-solid fa-right-from-bracket"></i>
-            {!collapsed && <span>Logout</span>}
+            <span>Logout</span>
           </button>
         </div>
       </aside>
