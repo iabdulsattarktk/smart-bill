@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { useAuth } from '../context/AuthContext'
 import styles from './Sidebar.module.css'
 
 const NAV_ITEMS = [
@@ -12,10 +13,21 @@ const NAV_ITEMS = [
 ]
 
 export default function Sidebar({ children }) {
-  const location = useLocation()
-  const navigate = useNavigate()
+  const location  = useLocation()
+  const navigate  = useNavigate()
+  const { user, logout } = useAuth()
   const [collapsed, setCollapsed] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+
+  const handleLogout = async () => {
+    await logout()
+    navigate('/')
+  }
+
+  // Show user's first name or email in sidebar
+  const displayName = user?.user_metadata?.full_name?.split(' ')[0]
+    || user?.email?.split('@')[0]
+    || 'User'
 
   return (
     <div className={styles.layout}>
@@ -53,9 +65,20 @@ export default function Sidebar({ children }) {
           ))}
         </nav>
 
-        {/* Bottom: logout */}
+        {/* Bottom: user info + logout */}
         <div className={styles.sidebarBottom}>
-          <button className={styles.logoutBtn} onClick={() => navigate('/')}>
+          {!collapsed && (
+            <div className={styles.userRow}>
+              <div className={styles.userAvatar}>
+                {displayName.charAt(0).toUpperCase()}
+              </div>
+              <div className={styles.userInfo}>
+                <div className={styles.userName}>{displayName}</div>
+                <div className={styles.userEmail}>{user?.email}</div>
+              </div>
+            </div>
+          )}
+          <button className={styles.logoutBtn} onClick={handleLogout}>
             <i className="fa-solid fa-right-from-bracket"></i>
             {!collapsed && <span>Logout</span>}
           </button>
