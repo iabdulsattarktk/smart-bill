@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import Sidebar from '../components/Sidebar'
 import styles from './SettingsPage.module.css'
 
@@ -129,6 +129,19 @@ export default function SettingsPage() {
                     <div className={styles.langSub}>{l.sub}</div>
                   </div>
                 ))}
+              </div>
+            </div>
+
+            {/* Legal */}
+            <div className="card" style={{padding:'24px'}}>
+              <h2 className={styles.cardTitle}><i className="fa-solid fa-scale-balanced"></i> Legal</h2>
+              <div style={{display:'flex',gap:'16px',flexWrap:'wrap',marginTop:'12px'}}>
+                <Link to="/terms" style={{color:'var(--navy)',fontWeight:600,textDecoration:'none',display:'flex',alignItems:'center',gap:'8px'}}>
+                  <i className="fa-solid fa-file-contract"></i> Terms of Service
+                </Link>
+                <Link to="/privacy" style={{color:'var(--navy)',fontWeight:600,textDecoration:'none',display:'flex',alignItems:'center',gap:'8px'}}>
+                  <i className="fa-solid fa-shield-halved"></i> Privacy Policy
+                </Link>
               </div>
             </div>
 

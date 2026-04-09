@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { useLang } from '../context/LanguageContext'
 import PublicNavbar from '../components/PublicNavbar'
 import Footer from '../components/Footer'
@@ -270,8 +271,8 @@ export default function HowItWorksPage() {
         </h2>
         <p className={styles.ctaSub}>{t.ctaSub}</p>
         <div className={styles.ctaBtns}>
-          <button className={styles.ctaBtn1}>{t.ctaBtn1}</button>
-          <button className={styles.ctaBtn2}>{t.ctaBtn2}</button>
+          <Link to="/signup" className={styles.ctaBtn1}>{t.ctaBtn1}</Link>
+          <Link to="/about" className={styles.ctaBtn2}>{t.ctaBtn2}</Link>
         </div>
       </section>
 
